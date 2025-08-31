@@ -1,0 +1,126 @@
+<section class="app-main">
+  <div class="container-title">
+    
+    <h1>{{ title }}</h1>
+    <p>Universidade Federal do Pampa</p>
+  </div>
+  <div class="container-inputs">
+    <button matButton="filled" color="primary" (click)="importarDados()">Importar Dados</button>
+    <div class="inputs-date">
+      <div class="date-inputs-row">
+        <mat-form-field appearance="outline" class="single-date-field">
+          <mat-label>Data inicial</mat-label>
+          <input matInput [matDatepicker]="startPicker" 
+                 placeholder="Escolha a data inicial"
+                 [(ngModel)]="dataInicial" 
+                 (ngModelChange)="onRangeChange()">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline" class="single-date-field">
+          <mat-label>Data final</mat-label>
+          <input matInput [matDatepicker]="endPicker" 
+                 placeholder="Escolha a data final"
+                 [(ngModel)]="dataFinal" 
+                 (ngModelChange)="onRangeChange()">
+          <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção de Gráficos -->
+<section class="charts-section" *ngIf="dadosFit && dadosFit.length > 0">
+  <div class="container">
+    <h2>Análise de Dados</h2>
+    
+    <div class="charts-grid">
+      <!-- Gráfico de Calorias por Dia -->
+      <div class="chart-card">
+        <h3>Calorias por Dia</h3>
+        <ngx-charts-line-chart
+          [view]="view"
+          [results]="caloriasPorDia"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="false"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          xAxisLabel="Data"
+          yAxisLabel="Calorias (kcal)"
+          [animations]="false">
+        </ngx-charts-line-chart>
+      </div>
+
+      <!-- Gráfico de Passos por Dia -->
+      <div class="chart-card">
+        <h3>Passos por Dia</h3>
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [results]="passosPorDia"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="false"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          xAxisLabel="Data"
+          yAxisLabel="Passos"
+          [animations]="false">
+        </ngx-charts-bar-vertical>
+      </div>
+
+      <!-- Gráfico de Peso -->
+      <div class="chart-card" *ngIf="pesoPorDia.length > 0 && pesoPorDia[0].series.length > 0">
+        <h3>Evolução do Peso</h3>
+        <ngx-charts-area-chart
+          [view]="view"
+          [results]="pesoPorDia"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="false"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          xAxisLabel="Data"
+          yAxisLabel="Peso (kg)"
+          [animations]="false">
+        </ngx-charts-area-chart>
+      </div>
+
+      <!-- Gráfico de Distribuição de Atividades -->
+      <div class="chart-card" *ngIf="distribuicaoAtividades.length > 0">
+        <h3>Distribuição de Atividades</h3>
+        <ngx-charts-pie-chart
+          [view]="view"
+          [results]="distribuicaoAtividades"
+          [legend]="showLegend"
+          [explodeSlices]="false"
+          [labels]="true"
+          [doughnut]="false"
+          [animations]="false">
+        </ngx-charts-pie-chart>
+      </div>
+
+      <!-- Gráfico de Distância -->
+      <div class="chart-card" *ngIf="distanciaPorDia.length > 0 && distanciaPorDia[0].series.length > 0">
+        <h3>Distância Percorrida</h3>
+        <ngx-charts-area-chart
+          [view]="view"
+          [results]="distanciaPorDia"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="false"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          xAxisLabel="Data"
+          yAxisLabel="Distância (km)"
+          [animations]="false">
+        </ngx-charts-area-chart>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-main [dadosFit]="dadosFiltrados"></app-main>

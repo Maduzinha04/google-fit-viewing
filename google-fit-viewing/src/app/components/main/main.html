@@ -1,0 +1,176 @@
+<section class="container">
+    <div class="container-dados" *ngIf="dadosFit && dadosFit.length > 0; else noDados">
+        <div class="cards-grid">
+            <mat-card *ngFor="let dado of dadosPaginados; let i = index" class="data-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="card-avatar">
+                        <mat-icon>calendar_today</mat-icon>
+                    </div>
+                    <mat-card-title>{{ dado.data | date:'dd/MM/yyyy' }}</mat-card-title>
+                    <mat-card-subtitle>Dia #{{ (pageIndex * pageSize) + i + 1 }}</mat-card-subtitle>
+                </mat-card-header>
+                
+                <mat-card-content>
+                    <!-- Métricas Principais -->
+                    <div class="main-metrics">
+                        <div class="metric-row">
+                            <div class="metric-item">
+                                <mat-icon class="metric-icon calories">local_fire_department</mat-icon>
+                                <div class="metric-info">
+                                    <span class="metric-value">{{ dado.calorias | number:'1.0-0' }}</span>
+                                    <span class="metric-label">kcal</span>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-item">
+                                <mat-icon class="metric-icon steps">directions_walk</mat-icon>
+                                <div class="metric-info">
+                                    <span class="metric-value">{{ dado.contagemPassos | number }}</span>
+                                    <span class="metric-label">passos</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <div class="metric-item" *ngIf="dado.distancia > 0; else noDistance">
+                                <mat-icon class="metric-icon distance">straighten</mat-icon>
+                                <div class="metric-info">
+                                    <span class="metric-value">{{ (dado.distancia / 1000) | number:'1.1-1' }}</span>
+                                    <span class="metric-label">km</span>
+                                </div>
+                            </div>
+                            <ng-template #noDistance>
+                                <div class="metric-item">
+                                    <mat-icon class="metric-icon distance">straighten</mat-icon>
+                                    <div class="metric-info">
+                                        <span class="metric-value">0</span>
+                                        <span class="metric-label">km</span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            
+                            <div class="metric-item">
+                                <mat-icon class="metric-icon activity">timer</mat-icon>
+                                <div class="metric-info">
+                                    <span class="metric-value">{{ dado.contagemMinutosMovimento || 0 }}</span>
+                                    <span class="metric-label">min ativo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas Secundárias -->
+                    <div class="secondary-metrics" *ngIf="temMetricasSecundarias(dado)">
+                        <mat-divider></mat-divider>
+                        
+                        <!-- Frequência Cardíaca -->
+                        <div class="metric-group" *ngIf="dado.frequenciaCardiacaMedia > 0">
+                            <h4 class="group-title">
+                                <mat-icon>favorite</mat-icon>
+                                Frequência Cardíaca
+                            </h4>
+                            <div class="group-metrics">
+                                <div class="small-metric">
+                                    <span class="small-label">Média</span>
+                                    <span class="small-value">{{ dado.frequenciaCardiacaMedia }} bpm</span>
+                                </div>
+                                <div class="small-metric">
+                                    <span class="small-label">Máx</span>
+                                    <span class="small-value">{{ dado.frequenciaCardiacaMaxima }} bpm</span>
+                                </div>
+                                <div class="small-metric">
+                                    <span class="small-label">Mín</span>
+                                    <span class="small-value">{{ dado.frequenciaCardiacaMinima }} bpm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Peso -->
+                        <div class="metric-group" *ngIf="dado.pesoMedio > 0">
+                            <h4 class="group-title">
+                                <mat-icon>monitor_weight</mat-icon>
+                                Peso
+                            </h4>
+                            <div class="group-metrics">
+                                <div class="small-metric">
+                                    <span class="small-label">Médio</span>
+                                    <span class="small-value">{{ dado.pesoMedio | number:'1.1-1' }} kg</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.pesoMaximo !== dado.pesoMedio">
+                                    <span class="small-label">Máx</span>
+                                    <span class="small-value">{{ dado.pesoMaximo | number:'1.1-1' }} kg</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.pesoMinimo !== dado.pesoMedio">
+                                    <span class="small-label">Mín</span>
+                                    <span class="small-value">{{ dado.pesoMinimo | number:'1.1-1' }} kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Velocidade -->
+                        <div class="metric-group" *ngIf="dado.velocidadeMedia > 0">
+                            <h4 class="group-title">
+                                <mat-icon>speed</mat-icon>
+                                Velocidade
+                            </h4>
+                            <div class="group-metrics">
+                                <div class="small-metric">
+                                    <span class="small-label">Média</span>
+                                    <span class="small-value">{{ (dado.velocidadeMedia * 3.6) | number:'1.1-1' }} km/h</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.velocidadeMaxima > 0">
+                                    <span class="small-label">Máx</span>
+                                    <span class="small-value">{{ (dado.velocidadeMaxima * 3.6) | number:'1.1-1' }} km/h</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Atividades -->
+                        <div class="metric-group" *ngIf="temAtividades(dado)">
+                            <h4 class="group-title">
+                                <mat-icon>sports</mat-icon>
+                                Atividades
+                            </h4>
+                            <div class="group-metrics">
+                                <div class="small-metric" *ngIf="dado.duracaoCaminhada > 0">
+                                    <span class="small-label">Caminhada</span>
+                                    <span class="small-value">{{ (dado.duracaoCaminhada / 60000) | number:'1.0-0' }} min</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.duracaoCorrida > 0">
+                                    <span class="small-label">Corrida</span>
+                                    <span class="small-value">{{ (dado.duracaoCorrida / 60000) | number:'1.0-0' }} min</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.duracaoBicicleta > 0">
+                                    <span class="small-label">Bicicleta</span>
+                                    <span class="small-value">{{ (dado.duracaoBicicleta / 60000) | number:'1.0-0' }} min</span>
+                                </div>
+                                <div class="small-metric" *ngIf="dado.duracaoOutra > 0">
+                                    <span class="small-label">Outras</span>
+                                    <span class="small-value">{{ (dado.duracaoOutra / 60000) | number:'1.0-0' }} min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
+        <!-- Paginação -->
+        <mat-paginator 
+            [length]="totalItens"
+            [pageSize]="pageSize"
+            [pageIndex]="pageIndex"
+            [pageSizeOptions]="pageSizeOptions"
+            [showFirstLastButtons]="true"
+            (page)="onPageChange($event)"
+            class="data-paginator">
+        </mat-paginator>
+    </div>
+
+    <ng-template #noDados>
+        <div class="no-data">
+            <h3>Nenhum dado encontrado</h3>
+            <p>Importe um arquivo CSV para visualizar seus dados do Google Fit</p>
+        </div>
+    </ng-template>
+</section>

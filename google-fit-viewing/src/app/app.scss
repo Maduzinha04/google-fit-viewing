@@ -1,0 +1,209 @@
+.app-main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+
+    .container-title {
+    margin-bottom: 30px;
+    text-align: center;
+    }
+
+    .container-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    }
+
+    .inputs-date {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        
+        .date-inputs-row {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+    }
+
+
+}
+
+
+
+
+mat-form-field {
+  width: 300px;
+  
+  &.single-date-field {
+    width: 220px;
+  }
+  
+  &.date-range-field {
+    // Estilos específicos para o campo de range de datas
+    .mat-mdc-form-field-subscript-wrapper {
+      margin-top: 8px;
+    }
+    
+    .mat-mdc-form-field-hint-wrapper {
+      color: #666;
+      font-size: 0.85rem;
+    }
+  }
+  
+  // Estilos específicos para o datepicker
+  .mat-datepicker-toggle {
+    color: #1976d2;
+    margin-left: 8px;
+    
+    &:hover {
+      background-color: rgba(25, 118, 210, 0.1);
+      border-radius: 50%;
+    }
+    
+    &:focus {
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+  }
+  
+  .mat-datepicker-toggle-default-icon {
+    color: #1976d2 !important;
+    font-size: 20px !important;
+  }
+  
+  // Garantir que o ícone seja visível e clicável
+  mat-icon[matDatepickerToggleIcon] {
+    color: #1976d2 !important;
+    font-size: 22px !important;
+    width: 22px !important;
+    height: 22px !important;
+    cursor: pointer;
+    
+    &:hover {
+      color: #1565c0 !important;
+    }
+  }
+  
+  // Melhorar a aparência do sufixo
+  .mat-mdc-form-field-icon-suffix {
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+    .app-main {
+        padding: 16px;
+        
+        .inputs-date .date-inputs-row {
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        mat-form-field {
+          width: 100%;
+          
+          &.single-date-field {
+            width: 100%;
+          }
+        }
+    }
+}
+
+// Estilos para a seção de gráficos
+.charts-section {
+  background: #f8f9fa;
+  padding: 40px 20px;
+  margin-top: 40px;
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2d3748;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+.charts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  h3 {
+    margin: 0 0 20px 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+    width: 100%;
+  }
+
+  // Ajustes para gráficos responsivos
+  ngx-charts-line-chart,
+  ngx-charts-bar-vertical,
+  ngx-charts-area-chart,
+  ngx-charts-pie-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 450px;
+  }
+}
+
+// Responsividade para gráficos
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .chart-card {
+    padding: 16px;
+    
+    ngx-charts-line-chart,
+    ngx-charts-bar-vertical,
+    ngx-charts-area-chart,
+    ngx-charts-pie-chart {
+      height: 300px;
+    }
+  }
+
+  .charts-section {
+    padding: 20px 10px;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}
