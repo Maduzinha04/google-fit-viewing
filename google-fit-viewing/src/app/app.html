@@ -1,11 +1,13 @@
 <section class="app-main">
   <div class="container-title">
-    
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo do PhysioCare" class="logo-image">
+    </div>
     <h1>{{ title }}</h1>
     <p>Universidade Federal do Pampa</p>
   </div>
   <div class="container-inputs">
-    <button matButton="filled" color="primary" (click)="importarDados()">Importar Dados</button>
+    <button matButton="filled" class="custom-import-button" (click)="importarDados()">Importar Dados</button>
     <div class="inputs-date">
       <div class="date-inputs-row">
         <mat-form-field appearance="outline" class="single-date-field">
@@ -123,4 +125,47 @@
   </div>
 </section>
 
-<app-main [dadosFit]="dadosFiltrados"></app-main>
+<app-main [dadosFit]="dadosFiltrados" ></app-main>
+
+<!-- Footer -->
+<footer class="app-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>PhysioCare</h4>
+        <p>Plataforma para visualização e análise de sinais fisiológicos gerados com smartbands</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Universidade</h4>
+        <p>Universidade Federal do Pampa</p>
+        <p>Campus Bagé</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Tecnologias</h4>
+        <p>Angular 20</p>
+        <p>Angular Material</p>
+        <p>NGX Charts</p>
+      </div>
+      
+      <div class="footer-section contact-section">
+        <div class="contact-links">
+          <a href="https://gimm_unipampa.gitlab.io/page/" target="_blank" rel="noopener" class="footer-link gimm-link">
+            <img src="assets/1.svg" alt="GIMM - Grupo de Interesse em Mineração Multimídia" class="gimm-logo">
+          </a>
+          <a href="https://unipampa.edu.br" target="_blank" rel="noopener" class="footer-link unipampa-link">
+             <img src="assets/4.svg" alt="Universidade Federal do Pampa" class="unipampa-logo">
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-divider"></div>
+      <div class="footer-copyright">
+        <p>&copy; {{ getCurrentYear() }} PhysioCare - Bianca Durgante & Maria Eduarda Maia</p>
+      </div>
+    </div>
+  </div>
+</footer>

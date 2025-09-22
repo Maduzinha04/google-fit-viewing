@@ -31,7 +31,11 @@ export class Main {
   get totalItens(): number {
     return this.dadosFit?.length || 0;
   }
-  
+
+  handleDadoSelecionado(dado: DadosFit): void {
+    this.dadoSelecionado.emit(dado);
+  }
+
   onPageChange(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;

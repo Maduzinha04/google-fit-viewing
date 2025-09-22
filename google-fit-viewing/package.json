@@ -5,9 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ghpages": "ng build --configuration github-pages --base-href 'https://Maduzinha04.github.io/google-fit-viewing/'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:google-fit-viewing": "node dist/google-fit-viewing/server/server.mjs"
+    "serve:ssr:google-fit-viewing": "node dist/google-fit-viewing/server/server.mjs",
+    "predeploy": "npm run build:ghpages",
+    "deploy:prepare": "touch dist/google-fit-viewing/browser/.nojekyll && cp dist/google-fit-viewing/browser/index.html dist/google-fit-viewing/browser/404.html",
+    "deploy:ghpages": "npx angular-cli-ghpages --dir=dist/google-fit-viewing/browser --no-silent",
+    "deploy": "npm run predeploy && npm run deploy:prepare && npm run deploy:ghpages"
   },
   "prettier": {
     "overrides": [
@@ -44,6 +49,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "angular-cli-ghpages": "^2.0.3",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

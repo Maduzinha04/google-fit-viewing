@@ -3,7 +3,11 @@
   max-width: 1200px;
   margin: 0 auto;
 
-
+    .logo-image {
+      width: 150px;
+      height: auto;
+      margin-bottom: 10px;
+    }
     .container-title {
     margin-bottom: 30px;
     text-align: center;
@@ -31,7 +35,28 @@
 
 }
 
-
+.custom-import-button {
+  background-color: #2052a3 !important; 
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    background-color: #3367D6 !important; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+    transform: translateY(-2px) !important;
+  }
+  
+  &:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  }
+}
 
 
 mat-form-field {
@@ -42,7 +67,6 @@ mat-form-field {
   }
   
   &.date-range-field {
-    // Estilos específicos para o campo de range de datas
     .mat-mdc-form-field-subscript-wrapper {
       margin-top: 8px;
     }
@@ -74,7 +98,6 @@ mat-form-field {
     font-size: 20px !important;
   }
   
-  // Garantir que o ícone seja visível e clicável
   mat-icon[matDatepickerToggleIcon] {
     color: #1976d2 !important;
     font-size: 22px !important;
@@ -87,7 +110,6 @@ mat-form-field {
     }
   }
   
-  // Melhorar a aparência do sufixo
   .mat-mdc-form-field-icon-suffix {
     padding-right: 8px;
   }
@@ -112,9 +134,8 @@ mat-form-field {
     }
 }
 
-// Estilos para a seção de gráficos
 .charts-section {
-  background: #f8f9fa;
+
   padding: 40px 20px;
   margin-top: 40px;
 
@@ -168,7 +189,6 @@ mat-form-field {
     width: 100%;
   }
 
-  // Ajustes para gráficos responsivos
   ngx-charts-line-chart,
   ngx-charts-bar-vertical,
   ngx-charts-area-chart,
@@ -181,7 +201,6 @@ mat-form-field {
   }
 }
 
-// Responsividade para gráficos
 @media (max-width: 768px) {
   .charts-grid {
     grid-template-columns: 1fr;
@@ -207,3 +226,307 @@ mat-form-field {
     }
   }
 }
+
+// Footer Styles
+.app-footer {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  color: white;
+  margin-top: 40px;
+  padding: 25px 0 15px 0;
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 20px;
+  }
+
+  .footer-section {
+    h4 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #4299e1;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+
+    p {
+      color: #e2e8f0;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+
+      .footer-icon {
+        font-size: 16px;
+        color: #4299e1;
+      }
+    }
+
+    .footer-link {
+      color: #4299e1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #63b3ed;
+        transform: translateY(-1px);
+      }
+
+      .footer-icon {
+        font-size: 18px;
+        color: inherit;
+      }
+
+      &.gimm-link {
+        .gimm-logo {
+          width: 60px;
+          height: 60px;
+          object-fit: contain;
+          filter: brightness(0) saturate(100%) invert(59%) sepia(93%) saturate(1000%) hue-rotate(190deg) brightness(103%) contrast(96%);
+          transition: all 0.3s ease;
+        }
+
+        &:hover .gimm-logo {
+          filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(1000%) hue-rotate(190deg) brightness(115%) contrast(96%);
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    // Seções especiais para imagens como colunas individuais
+    &.gimm-section,
+    &.unipampa-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-link {
+        padding: 5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: rgba(66, 153, 225, 0.1);
+          transform: translateY(-2px);
+        }
+
+        &.gimm-link {
+          .gimm-logo {
+            width: 190px;
+            height: 190px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(93%) saturate(1000%) hue-rotate(190deg) brightness(103%) contrast(96%);
+            transition: all 0.3s ease;
+          }
+
+          &:hover .gimm-logo {
+            filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(1000%) hue-rotate(190deg) brightness(115%) contrast(96%);
+            transform: scale(1.05);
+          }
+        }
+
+        &.unipampa-link {
+          .unipampa-logo {
+            width: 190px;
+            height: 190px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(93%) saturate(1000%) hue-rotate(190deg) brightness(103%) contrast(96%);
+            transition: all 0.3s ease;
+          }
+
+          &:hover .unipampa-logo {
+            filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(1000%) hue-rotate(190deg) brightness(115%) contrast(96%);
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+
+    // Seção especial para contatos com imagens (mantida para compatibilidade)
+    &.contact-section {
+      margin-left: -40px;
+      
+      .contact-links {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .footer-link {
+        padding: 5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: rgba(66, 153, 225, 0.1);
+          transform: translateY(-2px);
+        }
+
+        &.gimm-link {
+          .gimm-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(93%) saturate(1000%) hue-rotate(190deg) brightness(103%) contrast(96%);
+            transition: all 0.3s ease;
+          }
+
+          &:hover .gimm-logo {
+            filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(1000%) hue-rotate(190deg) brightness(115%) contrast(96%);
+            transform: scale(1.05);
+          }
+        }
+
+        &.unipampa-link {
+          .unipampa-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(93%) saturate(1000%) hue-rotate(190deg) brightness(103%) contrast(96%);
+            transition: all 0.3s ease;
+          }
+
+          &:hover .unipampa-logo {
+            filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(1000%) hue-rotate(190deg) brightness(115%) contrast(96%);
+            transform: scale(1.05);
+          }
+        }
+
+        .contact-icon {
+          font-size: 36px;
+          width: 36px;
+          height: 36px;
+          color: #4299e1;
+          transition: all 0.3s ease;
+        }
+
+        &.unipampa-link:hover .contact-icon {
+          color: #63b3ed;
+          transform: rotate(5deg) scale(1.1);
+        }
+
+        &.github-link:hover .contact-icon {
+          color: #63b3ed;
+          transform: rotate(-5deg) scale(1.1);
+        }
+      }
+    }
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #4299e1 50%, transparent 100%);
+    margin-bottom: 20px;
+  }
+
+  .footer-bottom {
+    .footer-copyright {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      p {
+        margin: 0;
+        color: #cbd5e0;
+        font-size: 0.9rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+
+        a {
+          color: #4299e1;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: #63b3ed;
+            transform: translateY(-2px);
+          }
+
+          mat-icon {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsividade do Footer
+@media (max-width: 768px) {
+  .app-footer {
+    padding: 30px 0 15px 0;
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .footer-bottom .footer-copyright {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    .contact-section {
+      .contact-links {
+        align-items: center;
+        gap: 15px;
+      }
+
+      .footer-link {
+        &.gimm-link .gimm-logo {
+          width: 60px;
+          height: 60px;
+        }
+
+        &.unipampa-link .unipampa-logo {
+          width: 60px;
+          height: 60px;
+        }
+
+        .contact-icon {
+          font-size: 40px;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Main } from './components/main/main';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
@@ -34,7 +34,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = "Bem-Vindo ao Google Fit Viewing";
+  protected readonly title = "Bem-vindo ao PhysioCare";
   dadosFit: DadosFit[] = [];
   dataInicial: Date | null = null;
   dataFinal: Date | null = null;
@@ -164,5 +164,9 @@ export class App {
 
   onDataFinalChange(event: any) {
     console.log('Data Final selecionada:', event);
+  }
+
+  getCurrentYear(): number {
+    return new Date().getFullYear();
   }
 }

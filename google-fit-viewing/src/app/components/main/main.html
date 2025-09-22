@@ -72,7 +72,7 @@
                             <div class="group-metrics">
                                 <div class="small-metric">
                                     <span class="small-label">Média</span>
-                                    <span class="small-value">{{ dado.frequenciaCardiacaMedia }} bpm</span>
+                                    <span class="small-value">{{ dado.frequenciaCardiacaMedia | number:'1.0-2'}} bpm</span>
                                 </div>
                                 <div class="small-metric">
                                     <span class="small-label">Máx</span>
@@ -170,7 +170,7 @@
     <ng-template #noDados>
         <div class="no-data">
             <h3>Nenhum dado encontrado</h3>
-            <p>Importe um arquivo CSV para visualizar seus dados do Google Fit</p>
+            <p>Importe um arquivo CSV para visualizar seus dados</p>
         </div>
     </ng-template>
 </section>
